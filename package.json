@@ -1,6 +1,6 @@
 {
   "name": "otel-aws-sdk-retry-patch",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "NodeJS module which adds the traceparent header to the unsignable headers in the aws-sdk.",
   "main": "lib/index.js",
   "directories": {
@@ -26,12 +26,12 @@
   },
   "homepage": "https://github.com/NativeChat/otel-aws-sdk-retry-patch#readme",
   "dependencies": {
-    "require-in-the-middle": "5.0.3"
+    "require-in-the-middle": "5.1.0"
   },
   "devDependencies": {
     "@types/jasmine": "3.6.1",
     "@types/node": "14.14.7",
-    "aws-sdk": "2.790.0",
+    "aws-sdk": "2.1028.0",
     "jasmine": "3.6.3",
     "jasmine-expect": "5.0.0",
     "jasmine-reporters": "2.4.0",

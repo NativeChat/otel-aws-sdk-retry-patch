@@ -6,3 +6,4 @@ reports
 scratch
 *.js.map
 *.tgz
+!package-lock.json
