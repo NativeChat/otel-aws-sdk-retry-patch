@@ -1,0 +1,30 @@
+name: sca
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  sca:
+    environment: sca-env
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14.x'
+      - run: npm install -g @cyclonedx/bom
+      - run: cyclonedx-bom -o bom.json
+      - run: echo "REPOSITORY_NAME=$(echo '${{ github.repository }}' | awk -F '/' '{print $2}')" >> $GITHUB_ENV
+      - name: Upload BOM to Dependency-Track
+        uses: DependencyTrack/gh-upload-sbom@801995c917fdcc580f96275837bcbe6b46e5b159
+        with:
+          serverhostname: ${{ secrets.DT_URL }}
+          apikey: ${{ secrets.DT_API_KEY }}
+          projectname: ${{ env.REPOSITORY_NAME }}
+          projectversion: '1.0.0'
+          autocreate: true
+          bomfilename: './bom.json'
+
